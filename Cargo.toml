@@ -1,0 +1,17 @@
+[package]
+name = "bevy-term"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+# Headless Bevy: ECS + App + States. No window, no renderer.
+bevy = { version = "=0.19.1", default-features = false, features = ["std", "bevy_state"] }
+crossterm = "0.29.0"
+rand = { version = "0.10", features = ["chacha"] }
+ratatui = { version = "0.30.2", default-features = false, features = ["crossterm_0_29"] }
+ron = "0.12"
+serde = { version = "1", features = ["derive"] }
+
+# Bevy is ~340 crates of generic code; debuginfo for all of it is GBs nobody steps into.
+[profile.dev.package."*"]
+debug = false
